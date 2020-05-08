@@ -27,7 +27,8 @@ class PostListViewVolunteer(ListView):
     
 
     def get(self, request):
-        posts =  Post.objects.all().order_by('-date_posted')
+        posts = Post.objects.all().order_by('-date_posted')
+            
         if 'search' in request.GET:
             search_term =  request.GET['search']
             posts = posts.filter(Q(title__icontains = search_term) | 
@@ -52,7 +53,8 @@ class PostListViewGenUser(ListView):
     
 
     def get(self, request):
-        posts =  Post.objects.filter().order_by('-date_posted')
+
+        posts = Post.objects.all().order_by('-date_posted')   
         if 'search' in request.GET:
             search_term =  request.GET['search']
             posts = posts.filter(Q(title__icontains = search_term) | 
@@ -109,7 +111,7 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title','image', 'content']
+    fields = ['title', 'image', 'content']
 
     def form_valid(self, form):
         form.instance.author = self.request.user

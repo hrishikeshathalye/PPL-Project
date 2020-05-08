@@ -15,7 +15,7 @@
         {% else %}
           <a class="mr-2" style="text-decoration: none;" href="{% url 'not-friend' %}">{{ post.author }}</a>
         {% endif %}
-      
+
       <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
       <small style="float: right;" class="text-muted">{{ post.date_posted|date:"h:i a" }}</small>
       </div>
@@ -30,6 +30,14 @@
         <a href="{% url 'post-detail' post.id %}"><img style="border-radius: 20px;" src ="{{post.image.url}}" alt ='post pic'></a>
         <p style="margin-top: 10px;" class="article-content">{{ post.content }}</p>
       {% endif %}
+
+      <form action="{% url 'report_post' %}" method="post" style="padding-right: 20px;">
+        {% csrf_token %}
+        <button type="submit" name="post_id" value="{{ post.id }}" 
+          class="btn btn-outline-danger button-dark"
+          data-toggle="tooltip" data-placement="bottom" title="Report this post for fake content."
+           style="font-size: 14px; float: right;">Report</button>
+      </form>
 
     <div class="row" style="margin-left: 0px;">
     <form action="{% url 'like_post' %}" method="post" style="padding-right: 20px;">

@@ -34,7 +34,7 @@
       <form action="{% url 'report_post' %}" method="post" style="padding-right: 20px;">
         {% csrf_token %}
         <button type="submit" name="post_id" value="{{ post.id }}" 
-          class="btn btn-outline-primary button-dark"
+          class="btn btn-outline-danger button-dark"
           data-toggle="tooltip" data-placement="bottom" title="Report this post for fake content."
            style="font-size: 14px; float: right;">Report</button>
       </form>
@@ -51,7 +51,7 @@
       {% csrf_token %}
       <button type="submit" name="post_id" value="{{ post.id }}"
         class="btn btn-outline-primary button-dark fa fa-thumbs-down"></button>
-      {{ post.total_dislikes }}
+        {{ post.total_dislikes }}
     </form>
 
     <a href="{% url 'post-detail' pk=post.pk %}" style="padding-right: 5px;"><button class="btn btn-outline-primary button-dark fa fa-comment-o" ></button></a>{{ post.comments.count }}
