@@ -1,0 +1,15 @@
+make sure you have pipenv installed.
+
+PPL_Projcet>pipenv shell
+PPL_Projcet>pipenv install django
+PPL_Project>pipenv install Pillow
+PPL_Project>pipenv install django-crispy-forms
+PPL_Project>cd django_project
+PPL_Project\django-project>python manage.py runserver
+
+
+The above procedure needs to be followed only once.
+Later on when u open terminal just execute these two lines:
+
+PPL_Projcet>pipenv shell
+PPL_Project\django-project>python manage.py runserver

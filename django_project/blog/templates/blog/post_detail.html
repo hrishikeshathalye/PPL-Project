@@ -1,0 +1,41 @@
+{% extends "blog/base_other.html" %}
+{% block content %}
+    <article class="media content-section" style="border-radius: 15px;">
+        <img class = "rounded-circle article-img" src="{{ object.author.profile.image.url }}" alt="Profile Picture">
+        <div class="media-body">
+          <div class="article-metadata">
+            <a class="mr-2" style="text-decoration: none;" href="">{{ object.author }}</a>
+            <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+            <small style="float: right;" class="text-muted">{{ object.date_posted|date:"h:i a" }}</small>
+            {% if object.author == user %}
+              <div>
+                <a class="btn btn-outline-secondary button-dark fa fa-edit" data-toggle="tooltip" data-placement="bottom" title="Update this post." href="{% url 'post-update' object.id%}" ></a>
+                <a class="btn btn-outline-danger button-dark fa fa-trash" data-toggle="tooltip" data-placement="bottom" title="Delete this post." href="{% url 'post-delete' object.id%}" ></a>
+              </div>
+            {% endif %}
+          </div>
+          <h2 class="article-title font-weight-light" >{{ object.title }}</h2>
+          {% if  object.image.url == '/media/default.jpg' %}
+            <p class="article-content" style="margin-left: 0px;">{{ object.content }}</p>
+          {% else %}
+            <img style="border-radius: 20px;" src ="{{object.image.url}}" alt ='post pic'>
+            <p style="margin-top: 10px; margin-left: 0px;" class="article-content">{{ object.content }}</p>
+          {% endif %}
+        </div>
+    </article>
+    <hr>
+    <a href="{% url 'add_comment_to_post' pk=post.pk %}"><button class="btn btn-outline-primary button-dark"">Add Comment</button></a><hr>
+    <h2 class="article-title font-weight-light pb-2" style="text-align:center; border-bottom: 1px solid #808080;">Comments</h2>
+    {% for comment in object.comments.all reversed %}
+    <div class="content-section" style="border-radius: 15px;">
+      <div class="article-metadata">
+        <a class="mr-2" style="text-decoration: none;" href=''>{{ comment.author }}</a>
+        <small class="text-muted">{{ comment.created_date|date:"F d, Y" }}</small>
+        <small style="float: right;" class="text-muted">{{ comment.created_date|date:"h:i a" }}</small>
+      </div>
+      <p style="margin-top: 10px; margin-left: 0px;" class="article-content">{{ comment.text }}</p>
+    </div>
+    {% empty %}
+        <p class="mt-3" style="text-align: center;">No comments yet :(</p>
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,10 @@
+{% extends "blog/base_login.html" %}
+{% block content %}
+<div class="alert alert-info">
+<p>Click Forget Password to get a mail which contains your username and a link 
+to reset password. Click on the link if you wish to otherwise just see the username and ignore the link.
+Instead you can click on the home page link provided in the mail or just go to the home page from the app.
+</p>
+<a href="{% url 'password_reset' %}">Forgot Password?</a>
+</div>
+{% endblock content %}

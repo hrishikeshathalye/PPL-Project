@@ -1,0 +1,61 @@
+{% extends "blog/base_other.html" %}
+{% block content %}
+    <div class="media mb-5" style="border-bottom: 1px solid #b3b3b3;">
+      <img class="rounded-circle account-img" src="{{ users.profile.image.url }}">
+      <div class="media-body">
+        <h2 class="account-heading profile-username">{{ users.username }}</h2>
+        <p class="text-secondary"><b>Email-id:</b> {{ users.email }}</p>
+        <p class="text-secondary"><b>Name:</b> {{ users.first_name }} {{ users.last_name }}</p>
+        <p class="text-secondary"><b>About me:-</b></p>
+        <p class="text-secondary ml-5">{{ users.profile.bio }}</p>
+      </div>
+    </div>
+    {% if view.kwargs.username == user.username %}
+      <h2 class="mb-4 font-weight-light" style="padding-bottom: 10px; border-bottom: 1px solid #b3b3b3;">Posts by You ({{ page_obj.paginator.count }})</h2>
+    {% else %}
+      <h2 class="mb-4 font-weight-light" style="padding-bottom: 10px; border-bottom: 1px solid #b3b3b3;">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h2>
+    {% endif %}
+    {% for post in posts %}
+    <article class="media content-section box-shadow" style="border-radius: 15px;">
+        <img class = "rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="Profile Picture">
+        <div class="media-body">
+          <div class="article-metadata">
+            <a class="mr-2" style="text-decoration: none;" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+            <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+            <small style="float: right;" class="text-muted">{{ post.date_posted|date:"h:i a" }}</small>
+          </div>
+          <h2><a class="article-title font-weight-light" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+          {% if  post.image.url == '/media/default.jpg' %}
+            <p class="article-content">{{ post.content }}</p>
+          {% else %}
+            <img style="border-radius: 20px;" src ="{{post.image.url}}" alt ='post pic'>
+            <p style="margin-top: 10px;" class="article-content">{{ post.content }}</p>
+          {% endif %}
+          <hr>
+          <a href="{% url 'post-detail' pk=post.pk %}" style="padding-right: 5px;"><button class="btn btn-outline-primary button-dark fa fa-comment-o" ></button></a>{{ post.comments.count }}
+        </div>
+    </article>
+    {% endfor %}
+    <center>
+    {% if is_paginated %}
+      {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif %}
+
+    {% endif %}
+    </center>
+{% endblock content %}

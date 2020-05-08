@@ -1,0 +1,113 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all"/> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
+    <script>
+      $(document).ready(function(){ 
+          $("#txtSearch").autocomplete({
+              source: "/ajax_calls/search/",
+              minLength: 2,
+              open: function(){
+                  setTimeout(function () {
+                      $('.ui-autocomplete').css('z-index', 99);
+                  }, 0);
+              }
+            });
+      });
+</script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    {% if user.profile.theme == 'Dark' %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/dark.css' %}">
+    {% else %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/light.css' %}">
+    {% endif %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    {% if title %}
+        <title>Django PPL - {{ title  }}</title>
+    {% else %}
+        <title>Django PPL</title>
+    {% endif %}
+</head>
+
+<body class="dark-body light-body">
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+          <div class="container">
+              <a class="navbar-brand mr-1 logo-dark" href="{% url 'home-genuser' %}">Covid Connect</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggle">
+              <div class="navbar-nav mr-auto">
+                  <form class="form-inline my-2 my-lg-0 ml-5">
+                    <input style="border-radius: 15px; width: 300px" class="form-control mr-sm-2 search-dark" type="search" placeholder="Search for Posts" aria-label="Search" name = 'search'>
+                    <button style="border-radius: 15px;" class="btn btn-outline-light my-2 my-sm-0 button-dark" type="submit">Search</button>
+                  </form>
+                  <a href="{% url 'home-genuser' %}">
+                    <button  style="border-radius: 15px;" class="btn btn-outline-light button-dark ml-2">Clear Search Result</button>
+                  </a>
+              </div> 
+              <!-- Navbar Right Side -->
+              
+              <div class="navbar-nav">
+                <a class="nav-item nav-link" style="font-size: 17px; margin-top: 2px;">Welcome {{ user.first_name }}!</a>
+                <a class="nav-item nav-link fa fa-plus-square-o fa-lg dark-a mt-2" data-toggle="tooltip" data-placement="bottom" title="Create new post." href="{% url 'post-create' %}"></a>
+                <a class="nav-item nav-link fa fa-sign-out fa-lg dark-a mt-2" data-toggle="tooltip" data-placement="bottom" title="Logout" href="{% url 'logout' %}"></a>
+              </div>
+            </div>
+          </div>
+        </nav>
+    </header>
+      
+    <main role="main" class="container">
+      <div class="row">
+      <div class="col-md-9">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{message.tags}}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+          {% block content %}{% endblock %}
+      </div>
+      <div class="col-md-3">
+          <div class="content-section" style="border-radius: 15px;">
+            <a href="{% url 'profile' %}"><img class="rounded-circle article-img" style="float: left; width: 49px; height: 49px;" src="{{ user.profile.image.url }}"></a>
+            <a class="article-metadata" style="text-decoration: none;" href="{% url 'profile' %}">{{ user.username }}</a>
+            {% if user.first_name != '' %}
+              <p class="text-secondary mb-1" style="font-size: 15px;">{{ user.first_name }} {{ user.last_name }}</p>
+            {% else %}
+              <p class="text-secondary mb-1" style="font-size: 15px;">New User</p>
+            {% endif %}
+          </div>
+          <center>
+          <a href="{% url 'users-view' %}">
+            <button  style='font-size: 19px; border-radius: 15px;' class='btn btn-outline-info button-dark mb-3'>View All Users and Friends</button>
+          </a>
+          <a href="{% url 'liked-posts' %}">
+            <button  style='font-size: 19px; border-radius: 15px;' class='btn btn-outline-info button-dark'>Posts You've liked</button>
+          </a>
+        </center>
+      </div>
+      </div>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

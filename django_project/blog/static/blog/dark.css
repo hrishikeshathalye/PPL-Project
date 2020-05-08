@@ -1,0 +1,156 @@
+body {
+    background-color: #000000;
+    color: #333333;
+    margin-top: 5rem;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #444444;
+  }
+  
+  ul {
+    margin: 0;
+  }
+
+  .bg-steel {
+    background-color: #1a1a1a;
+  }
+  
+  .site-header .navbar-nav .nav-link {
+    color: #cbd5db;
+  }
+  
+  .site-header .navbar-nav .nav-link:hover {
+    color: #ffffff;
+  }
+  
+  .site-header .navbar-nav .nav-link.active {
+    font-weight: 500;
+  }
+  
+  .content-section {
+    background: #0d0d0d;
+    padding: 10px 20px;
+    border: 1px solid #262626;
+    border-radius: 3px;
+    margin-bottom: 20px;
+  }
+  
+  .article-title {
+    font-size: 28px;
+    color: #808080;
+  }
+  
+  a.article-title:hover {
+    color: #a6a6a6;
+    text-decoration: none;
+  }
+  
+  .article-content {
+    white-space: pre-line;
+    color: #808080;
+  }
+  
+  .article-img {
+    height: 65px;
+    width: 65px;
+    margin-right: 16px;
+    border: 1.4px solid white;
+  }
+
+  .article-img-small {
+    height: 45px;
+    width: 45px;
+  }
+  
+  .article-metadata {
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #808080;
+  }
+  
+  a.article-metadata:hover {
+    text-decoration: none;
+  }
+  
+  .article-svg {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+  }
+  
+  .account-img {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+    border: 2px solid white;
+  }
+  
+  .account-heading {
+    font-size: 2.5rem;
+  }
+
+  .comment {
+    margin: 20px 0px 20px 20px;
+}
+
+.search-dark {
+    color: white;
+    background-color: #333333;
+    border: none;
+}
+
+.search-dark:hover {
+    color: white;
+    background-color: #333333;
+    border: none;
+}
+
+.button-dark {
+    color: #666666;
+    border: 1px solid #666666;
+}
+
+button.button-dark:hover {
+    color: #999999;
+    background-color: #333333;
+    border: 1px solid #999999;
+}
+
+.dark-a {
+    color: #737373;
+}
+
+.t-dark {
+    color: #666666;
+}
+
+.author-home {
+    color: #666666;
+}
+
+a.author-home:hover {
+    color: #999999;
+}
+
+.profile-username {
+    color: #737373;
+}
+
+.profile-img-sidebar {
+  margin-right: 16px;
+  border-radius: 50%;
+  width: 48px; 
+  height: 48px; 
+  border: 1.4px solid white;
+}
+
+.box-shadow {
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.1s ease-in-out;
+}
+.box-shadow:hover {
+  box-shadow: 0 5px 15px 2px rgba(204, 204, 204, 0.20);
+}
+
