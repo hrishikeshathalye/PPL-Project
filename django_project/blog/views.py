@@ -36,14 +36,14 @@ class PostListViewVolunteer(ListView):
             posts = posts.filter(Q(title__icontains = search_term) | 
                                  Q(content__icontains = search_term))
 
-        paginator = Paginator(posts, 5) # Show 5 posts per page.
-        page_number = request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
+        # paginator = Paginator(posts, 5) # Show 5 posts per page.
+        # page_number = request.GET.get('page')
+        # page_obj = paginator.get_page(page_number)
         friend, created = Friend.objects.get_or_create(current_user=request.user)
         friends = friend.users.all()
         search_term = ''
                                  
-        return render(request, self.template_name, { 'page_obj': page_obj, 'friends': friends})
+        return render(request, self.template_name, { 'page_obj': posts, 'friends': friends, 'groupname': 'Volunteer'})
 
 @method_decorator(login_required, name='dispatch')
 @method_decorator(genuser_only, name='dispatch')
@@ -65,21 +65,22 @@ class PostListViewGenUser(ListView):
             posts = posts.filter(Q(title__icontains = search_term) | 
                                  Q(content__icontains = search_term))
 
-        paginator = Paginator(posts, 5) # Show 5 posts per page.
-        page_number = request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
+        # paginator = Paginator(posts, 5) # Show 5 posts per page.
+        # page_number = request.GET.get('page')
+        # page_obj = paginator.get_page(page_number)
         friend, created = Friend.objects.get_or_create(current_user=request.user)
         friends = friend.users.all()
         search_term = ''
                                  
-        return render(request, self.template_name, { 'page_obj': page_obj, 'friends': friends})
+        return render(request, self.template_name, { 'page_obj': posts, 'friends': friends, 'groupname': 'GenUser'})
 
 
-class UsersDisplayView(ListView):
+class UsersDisplayViewVolunteer(ListView):
     template_name = 'blog/users.html'   #<app>/<model>_<viewtype>.html
     
     def get(self, request):
-        users = User.objects.exclude(id = request.user.id)
+        users = User.objects.filter(groups__name = 'Volunteer')
+        users = users.exclude(id = request.user.id)
         friend, created = Friend.objects.get_or_create(current_user=request.user)
         friends = friend.users.all()
         search_term = ''
@@ -92,7 +93,28 @@ class UsersDisplayView(ListView):
             friends = friends.filter(Q(username__icontains = search_term) |
                                 Q(first_name__icontains = search_term))
             
-        return render(request, self.template_name, { 'users': users.order_by('first_name'), 'friends': friends.order_by('first_name') })
+        return render(request, self.template_name, { 'users': users.order_by('first_name'), 'friends': friends.order_by('first_name'), 'groupname': 'Volunteer' })
+
+class UsersDisplayViewGenUser(ListView):
+    template_name = 'blog/users.html'   #<app>/<model>_<viewtype>.html
+    
+    def get(self, request):
+        users = User.objects.filter(groups__name = 'GenUser')
+        users = users.exclude(id = request.user.id)
+        friend, created = Friend.objects.get_or_create(current_user=request.user)
+        friends = friend.users.all()
+        search_term = ''
+
+        if 'search' in request.GET:
+            search_term =  request.GET['search']
+            users = users.filter(Q(username__icontains = search_term) |
+                                Q(first_name__icontains = search_term))
+
+            friends = friends.filter(Q(username__icontains = search_term) |
+                                Q(first_name__icontains = search_term))
+            
+        return render(request, self.template_name, { 'users': users.order_by('first_name'), 'friends': friends.order_by('first_name'), 'groupname': 'GenUser' })
+
 
 class UserPostListView(ListView):
     model = Post
@@ -165,7 +187,11 @@ def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
 
 def not_friend(request):
-    return render(request, 'blog/not_friend.html', {'title':'Not Friend'})
+    if str(request.user.groups.all()[0]) == 'Volunteer':
+        return render(request, 'blog/not_friend.html', {'title':'Not Friend', 'groupname': 'Volunteer'})
+
+    elif str(request.user.groups.all()[0]) == 'GenUser':
+        return render(request, 'blog/not_friend.html', {'title':'Not Friend', 'groupname': 'GenUser'})
 
 def logout_home(request):
     return render(request, 'blog/home_logout.html', { 'posts': Post.objects.all().order_by('-date_posted') })
@@ -200,13 +226,19 @@ def change_friends(request, operation, pk):
         Friend.make_friend(request.user, friend)
     elif operation == 'remove':
         Friend.lose_friend(request.user, friend)
-    return redirect('users-view')
+    
+    if str(request.user.groups.all()[0]) == 'GenUser':
+        return redirect('genusers-view')
+
+    elif str(request.user.groups.all()[0]) == 'Volunteer':
+        return redirect('volunteers-view')
 
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
+            form.instance.author = request.user
             comment = form.save(commit=False)
             comment.post = post
             comment.save()

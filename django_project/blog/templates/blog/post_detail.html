@@ -29,7 +29,7 @@
     {% for comment in object.comments.all reversed %}
     <div class="content-section" style="border-radius: 15px;">
       <div class="article-metadata">
-        <a class="mr-2" style="text-decoration: none;" href=''>{{ comment.author }}</a>
+        <a class="mr-2" style="text-decoration: none;" href=''>{{ comment.author.username }}</a>
         <small class="text-muted">{{ comment.created_date|date:"F d, Y" }}</small>
         <small style="float: right;" class="text-muted">{{ comment.created_date|date:"h:i a" }}</small>
       </div>

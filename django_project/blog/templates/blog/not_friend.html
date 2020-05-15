@@ -3,6 +3,10 @@
 <div class="alert alert-dark" style="border-radius: 15px;">
     <h3 class="article-title font-weight-light" >You are not this users friend!</h3>
     <h5 class="article-title font-weight-light">You can't view the users profile or his posts unless you add him as your friend.</h5>
-    <a href="{% url 'users-view' %}"><button class="btn btn-outline-secondary" style="margin-top: 15px;">Okay</button></a>
+    {% if groupname == 'Volunteer' %}
+        <a href="{% url 'volunteers-view' %}"><button class="btn btn-outline-secondary" style="margin-top: 15px;">Okay</button></a>
+    {% elif groupname == 'GenUser' %}
+        <a href="{% url 'genusers-view' %}"><button class="btn btn-outline-secondary" style="margin-top: 15px;">Okay</button></a>
+    {% endif %}
 </div>
 {% endblock content %}

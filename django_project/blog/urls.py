@@ -1,12 +1,13 @@
 from django.urls import path
-from .views import PostListViewGenUser, PostListViewVolunteer, PostDetailView, PostCreateView, PostUpdateView, PostDeleteViewGenUser, PostDeleteViewVolunteer, UserPostListView, UsersDisplayView
+from .views import PostListViewGenUser, PostListViewVolunteer, PostDetailView, PostCreateView, PostUpdateView, PostDeleteViewGenUser, PostDeleteViewVolunteer, UserPostListView, UsersDisplayViewGenUser, UsersDisplayViewVolunteer
 from . import views
 
 urlpatterns = [
     path('', views.logout_home, name='logout-home'),
     path('home/volunteer/', PostListViewVolunteer.as_view(), name='home-volunteer'),
     path('home/genuser/', PostListViewGenUser.as_view(), name='home-genuser'),
-    path('users/', UsersDisplayView.as_view(), name='users-view'),
+    path('genusers/', UsersDisplayViewGenUser.as_view(), name='genusers-view'),
+    path('volunteers/', UsersDisplayViewVolunteer.as_view(), name='volunteers-view'),
     path('user/<str:username>/', UserPostListView.as_view(), name='user-posts'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
     path('post/new/', PostCreateView.as_view(), name='post-create'),

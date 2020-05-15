@@ -1,8 +1,9 @@
 {% extends "blog/base_users.html" %}
 {% block content %}
 <div class="row">
-<div class="col-md-6">
-    <h3 style="text-align: center;">Users ({{ users.count }})</h3>
+<div class="col-md-6" style="border-right: 1.5px solid gray;">
+    <h3 style="text-align: center;">All General Users ({{ users.count }})</h3>
+    <hr/>
     <div style="overflow-y:scroll; overflow-x:hidden; width: 350px; height: 500px;">
     {% for user in users %}
     {% if not user in friends %}  
@@ -20,9 +21,11 @@
     {% endif %}
     {% endfor %}
     </div>
+    <hr/>
 </div>
 <div class="col-md-6">
-    <h3 style="text-align: center;">Friends ({{ friends.count }})</h3>
+    <h3 style="text-align: center;">All Friends ({{ friends.count }})</h3>
+    <hr/>
     <div style="overflow-y:scroll; overflow-x:hidden; width: 350px; height: 500px;">
     {% for friend in friends %} 
     <div class="content-section mr-2" style="border-radius: 15px;">
@@ -32,6 +35,7 @@
     </div>
     {% endfor %}
     </div>
+    <hr/>
 </div>
 </div>
 {% endblock content %}

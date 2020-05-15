@@ -64,7 +64,7 @@ class Friend(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey('blog.Post', on_delete=models.CASCADE, related_name='comments')
-    author = models.CharField(max_length=200)
+    author = models.ForeignKey(User, related_name='comment_owner', on_delete = models.CASCADE)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     approved_comment = models.BooleanField(default=False)
@@ -74,4 +74,4 @@ class Comment(models.Model):
         self.save()
 
     def __str__(self):
-        return self.text
+        return self.author.username

@@ -93,9 +93,16 @@
             {% endif %}
           </div>
           <center>
-          <a href="{% url 'users-view' %}">
-            <button  style='font-size: 19px; border-radius: 15px;' class='btn btn-outline-info button-dark mb-3'>View All Users and Friends</button>
-          </a>
+          {% if groupname == 'Volunteer' %}
+            <a href="{% url 'volunteers-view' %}">
+              <button  style='font-size: 19px; border-radius: 15px;' class='btn btn-outline-info button-dark mb-3'>View All Users and Friends</button>
+            </a>
+          {% elif groupname ==  'GenUser' %}
+            <a href="{% url 'genusers-view' %}">
+              <button  style='font-size: 19px; border-radius: 15px;' class='btn btn-outline-info button-dark mb-3'>View All Users and Friends</button>
+            </a>
+          {% endif %}
+
           <a href="{% url 'liked-posts' %}">
             <button  style='font-size: 19px; border-radius: 15px;' class='btn btn-outline-info button-dark'>Posts You've liked</button>
           </a>

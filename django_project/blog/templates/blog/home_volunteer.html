@@ -1,6 +1,7 @@
 {% extends "blog/base.html" %} 
 {% block content %} 
 {% for post in page_obj %}
+{% if post.group == 'Volunteer' %}
 <article class="media content-section box-shadow" style="border-radius: 15px;">
   <a href="{% url 'user-posts' post.author.username %}"><img class="rounded-circle article-img"
       src="{{ post.author.profile.image.url }}" /></a>
@@ -30,7 +31,8 @@
         <a href="{% url 'post-detail' post.id %}"><img style="border-radius: 20px;" src ="{{post.image.url}}" alt ='post pic'></a>
         <p style="margin-top: 10px;" class="article-content">{{ post.content }}</p>
       {% endif %}
-
+      
+      {% if post.author != user %}
       <form action="{% url 'report_post' %}" method="post" style="padding-right: 20px;">
         {% csrf_token %}
         <button type="submit" name="post_id" value="{{ post.id }}" 
@@ -38,6 +40,7 @@
           data-toggle="tooltip" data-placement="bottom" title="Report this post for fake content."
            style="font-size: 14px; float: right;">Report</button>
       </form>
+      {% endif %}
 
     <div class="row" style="margin-left: 0px;">
     <form action="{% url 'like_post' %}" method="post" style="padding-right: 20px;">
@@ -58,8 +61,9 @@
     </div>
   </div>
 </article>
+{% endif %}
 {% endfor %}
-<center>
+<!-- <center>
   <h6>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</h6>
   {% if page_obj.has_previous %}
     <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
@@ -76,5 +80,5 @@
   <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
   <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
   {% endif %}
-</center>
+</center> -->
 {% endblock content %}
