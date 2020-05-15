@@ -45,22 +45,25 @@ class Post(models.Model):
         
 
 class Friend(models.Model):
-        users = models.ManyToManyField(User)
         current_user = models.ForeignKey(User, related_name='owner', null=True, on_delete = models.CASCADE)
+        friends = models.ManyToManyField(User)
+
+        def __str__(self):
+            return self.current_user.username
 
         @classmethod
         def make_friend(cls, current_user, new_friend):
             friend, created = cls.objects.get_or_create(
                 current_user=current_user
             )
-            friend.users.add(new_friend)
+            friend.friends.add(new_friend)
 
         @classmethod
         def lose_friend(cls, current_user, new_friend):
             friend, created = cls.objects.get_or_create(
                 current_user=current_user
             )
-            friend.users.remove(new_friend)
+            friend.friends.remove(new_friend)
 
 class Comment(models.Model):
     post = models.ForeignKey('blog.Post', on_delete=models.CASCADE, related_name='comments')
