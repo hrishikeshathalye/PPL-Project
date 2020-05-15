@@ -18,6 +18,8 @@ def home(request):
     }
     return render(request, 'blog/home.html', context)
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(allowed_users(allowed_roles=['Volunteer']), name='dispatch')
 class PostListViewVolunteer(ListView):
     model = Post
     template_name = 'blog/home_volunteer.html'   #<app>/<model>_<viewtype>.html
@@ -27,11 +29,7 @@ class PostListViewVolunteer(ListView):
     
 
     def get(self, request):
-        p = Post.objects.all().order_by('-date_posted')
-        posts = []
-        for post in p:
-            if str(post.author.groups.all()[0]) == 'Volunteer':
-                posts.append(post)
+        posts = Post.objects.all().order_by('-date_posted')
             
         if 'search' in request.GET:
             search_term =  request.GET['search']
@@ -47,6 +45,7 @@ class PostListViewVolunteer(ListView):
                                  
         return render(request, self.template_name, { 'page_obj': page_obj, 'friends': friends})
 
+@method_decorator(login_required, name='dispatch')
 @method_decorator(genuser_only, name='dispatch')
 class PostListViewGenUser(ListView):
     model = Post
@@ -57,11 +56,9 @@ class PostListViewGenUser(ListView):
     
 
     def get(self, request):
-        p = Post.objects.all().order_by('-date_posted') 
-        posts = []
-        for post in p:
-            if str(post.author.groups.all()[0]) == 'GenUser':
-                posts.append(post)
+        posts = Post.objects.all().order_by('-date_posted')
+
+        print(posts)
 
         if 'search' in request.GET:
             search_term =  request.GET['search']

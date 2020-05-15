@@ -37,5 +37,5 @@ def genuser_only(view_func):
         elif group == 'GenUser':
             return view_func(request, *args, **kwargs)
         else:
-            return HttpResponse('You are not authenticated! You need to authenticate as a Volunteer or GenUser to view the home page.')
+            return HttpResponse('You are not authorized to view this page')
     return wrapper_func

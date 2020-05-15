@@ -5,7 +5,9 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from blog.decorators import unauthenticated_user
 
+@unauthenticated_user
 def register_volunteer(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -29,6 +31,7 @@ def register_volunteer(request):
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
 
+@unauthenticated_user
 def register_genuser(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)

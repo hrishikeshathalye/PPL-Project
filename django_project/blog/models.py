@@ -23,6 +23,9 @@ class Post(models.Model):
     def get_home_url(self):
         return reverse('home-genuser')
 
+    def group(self):
+        return str(self.author.groups.all()[0])
+
     def total_likes(self):
         return self.likes.count()
 
