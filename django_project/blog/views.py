@@ -27,7 +27,11 @@ class PostListViewVolunteer(ListView):
     
 
     def get(self, request):
-        posts = Post.objects.all().order_by('-date_posted')
+        p = Post.objects.all().order_by('-date_posted')
+        posts = []
+        for post in p:
+            if str(post.author.groups.all()[0]) == 'Volunteer':
+                posts.append(post)
             
         if 'search' in request.GET:
             search_term =  request.GET['search']
@@ -53,8 +57,12 @@ class PostListViewGenUser(ListView):
     
 
     def get(self, request):
+        p = Post.objects.all().order_by('-date_posted') 
+        posts = []
+        for post in p:
+            if str(post.author.groups.all()[0]) == 'GenUser':
+                posts.append(post)
 
-        posts = Post.objects.all().order_by('-date_posted')   
         if 'search' in request.GET:
             search_term =  request.GET['search']
             posts = posts.filter(Q(title__icontains = search_term) | 
@@ -134,9 +142,20 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         else:
             return False
 
-class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class PostDeleteViewGenUser(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
-    success_url = '/blog/home/'
+    success_url = '/blog/home/genuser/'
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        else:
+            return False
+
+class PostDeleteViewVolunteer(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+    success_url = '/blog/home/volunteer/'
 
     def test_func(self):
         post = self.get_object()
@@ -168,7 +187,9 @@ def dislike_post(request):
 
 def liked_posts(request):
     posts = Post.objects.all().order_by('-date_posted')
-    return render(request, 'blog/liked_posts.html', { 'posts': posts })
+    friend, created = Friend.objects.get_or_create(current_user=request.user)
+    friends = friend.users.all()
+    return render(request, 'blog/liked_posts.html', { 'posts': posts, 'friends': friends })
 
 def report_post(request):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))

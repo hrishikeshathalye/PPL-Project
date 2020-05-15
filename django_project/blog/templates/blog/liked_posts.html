@@ -1,12 +1,20 @@
 {% extends "blog/base_other.html" %}
 {% block content %}
-    {% for post in posts %}
+    {% for post in posts %} 
     {% if user in post.likes.all %}
     <article class="media content-section box-shadow" style="border-radius: 15px;">
         <img class = "rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="Profile Picture">
         <div class="media-body">
           <div class="article-metadata">
-            <a class="mr-2" style="text-decoration: none;" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+            {% if post.author in friends %}
+              <a class="mr-2" style="text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="See this user's posts"
+                href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+            {% elif post.author == user %}
+              <a class="mr-2" style="text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="See this user's posts"
+                href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+            {% else %}
+              <a class="mr-2" style="text-decoration: none;" href="{% url 'not-friend' %}">{{ post.author }}</a>
+            {% endif %}
             <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
             <small style="float: right;" class="text-muted">{{ post.date_posted|date:"h:i a" }}</small>
           </div>

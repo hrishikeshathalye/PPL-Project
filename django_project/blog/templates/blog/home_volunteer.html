@@ -7,10 +7,10 @@
   <div class="media-body">
     <div class="article-metadata">
         {% if post.author in friends %}
-          <a class="mr-2" style="text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="See this user's blogs"
+          <a class="mr-2" style="text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="See this user's posts"
           href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
         {% elif post.author == user %}
-          <a class="mr-2" style="text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="See this user's blogs"
+          <a class="mr-2" style="text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="See this user's posts"
           href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
         {% else %}
           <a class="mr-2" style="text-decoration: none;" href="{% url 'not-friend' %}">{{ post.author }}</a>

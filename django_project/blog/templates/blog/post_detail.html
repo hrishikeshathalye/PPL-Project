@@ -10,7 +10,7 @@
             {% if object.author == user %}
               <div>
                 <a class="btn btn-outline-secondary button-dark fa fa-edit" data-toggle="tooltip" data-placement="bottom" title="Update this post." href="{% url 'post-update' object.id%}" ></a>
-                <a class="btn btn-outline-danger button-dark fa fa-trash" data-toggle="tooltip" data-placement="bottom" title="Delete this post." href="{% url 'post-delete' object.id%}" ></a>
+                <a class="btn btn-outline-danger button-dark fa fa-trash" data-toggle="tooltip" data-placement="bottom" title="Delete this post." href="{% url 'post-delete-genuser' object.id%}" ></a>
               </div>
             {% endif %}
           </div>
