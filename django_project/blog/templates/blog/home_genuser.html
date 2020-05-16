@@ -1,7 +1,6 @@
 {% extends "blog/base.html" %} 
 {% block content %} 
 {% for post in page_obj %}
-{% if post.group == 'GenUser' %}
 <article class="media content-section box-shadow" style="border-radius: 15px;">
   <a href="{% url 'user-posts' post.author.username %}"><img class="rounded-circle article-img"
       src="{{ post.author.profile.image.url }}" /></a>
@@ -57,11 +56,10 @@
         {{ post.total_dislikes }}
     </form>
 
-    <a href="{% url 'post-detail' pk=post.pk %}" style="padding-right: 5px;"><button class="btn btn-outline-primary button-dark fa fa-comment-o" ></button></a>{{ post.comments.count }}
+    <a href="{% url 'post-detail' pk=post.pk %}" style="padding-right: 5px;"><button class="btn btn-outline-primary button-dark far fa-comments" ></button></a>{{ post.comments.count }}
     </div>
   </div>
 </article>
-{% endif %}
 {% endfor %}
 <!-- <center>
   <h6>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</h6>
