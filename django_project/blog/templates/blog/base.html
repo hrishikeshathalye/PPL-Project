@@ -1,4 +1,4 @@
-{% load static%}
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'blog/light.css' %}">
     {% endif %}
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
     {% if title %}
         <title>Django PPL - {{ title  }}</title>
@@ -62,20 +62,27 @@
               
               <div class="navbar-nav">
                 <a class="nav-item nav-link" style="font-size: 17px; margin-top: 2px;">Welcome {{ user.first_name }}!</a>
-                <a class="nav-item nav-link fa fa-plus-square-o fa-lg dark-a mt-2" data-toggle="tooltip" data-placement="bottom" title="Create new post." href="{% url 'post-create' %}"></a>
-                <a class="nav-item nav-link fa fa-sign-out fa-lg dark-a mt-2" data-toggle="tooltip" data-placement="bottom" title="Logout" href="{% url 'logout' %}"></a>
+              </div>
+
+              <div class="navbar-nav" style="margin: auto;">
+                <a class="nav-item nav-link font-weight-light far fa-newspaper fa-2x" data-toggle="tooltip" data-placement="bottom" title="News" href="{% url 'news-index' %}"></a>
+              </div>
+
+              <div class="navbar-nav" style="margin-left: 1rem; margin-right: -2rem; margin-bottom: auto;">
+                <a class="nav-item nav-link far fa-plus-square fa-lg dark-a mt-2" data-toggle="tooltip" data-placement="bottom" title="Create new post." href="{% url 'post-create' %}"></a>
+                <a class="nav-item nav-link fas fa-sign-out-alt fa-lg dark-a mt-2" data-toggle="tooltip" data-placement="bottom" title="Logout" href="{% url 'logout' %}"></a>
               </div>
             </div>
           </div>
         </nav>
     </header>
       
-    <main role="main" class="container">
-      <div class="row">
+    <main role="main" class="container" >
+      <div class="row" >
       <div class="col-md-9">
           {% if messages %}
             {% for message in messages %}
-              <div class="alert alert-{{message.tags}}">
+              <div class="alert alert-{{message.tags}}>
                 {{ message }}
               </div>
             {% endfor %}
