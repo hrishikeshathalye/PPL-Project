@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+</head>
+<body style="color: #cae8d5; background-color: #84a9ac;">
+    <div class="jumbotron" style="background-color:#204051;">
+        <center>
+            <h1>Tracker</h1>
+            <a href="" class="fas fa-sync-alt fa-2x" style="float: right; color: #cae8d5; text-decoration: none;"></a>
+            <a href="{% url 'login' %}" class="fas fa-arrow-circle-left fa-2x" style="float: left; color: #cae8d5; text-decoration: none;"></a>
+        </center>
+    </div>
+    <div class="container-fluid" style="background-color: #3b6978; border-radius: 1rem; padding: 1rem; text-align: center;">
+        {% for i in data%}
+            <div class="row" style="padding:1rem;">
+                <div class="col-3" style="margin: auto; padding:1rem; background-color: #1b262c; border-radius: 1rem;">
+                    <h3 class="text-centre" > {{i.1}}</h3>
+                    <h5> Total Confirmed Cases: {{i.2}} </a></h5>
+                    <h5> Cured/Discharged/Migrated: {{i.3}} </a></h5>
+                    <h5> Deaths: {{i.4}} </a></h5>
+                </div>
+                <div class="col-3" style="margin: auto; padding:1rem; background-color: #1b262c; border-radius: 1rem;">
+                    <h3 class="text-centre" > {{i.6}}</h3>
+                    <h5> Total Confirmed Cases: {{i.7}} </a></h5>
+                    <h5> Cured/Discharged/Migrated: {{i.8}} </a></h5>
+                    <h5> Deaths: {{i.9}} </a></h5>
+                </div>
+                <div class="col-3" style="margin: auto; padding:1rem; background-color: #1b262c; border-radius: 1rem;">
+                    <h3 class="text-centre" > {{i.11}}</h3>
+                    <h5> Total Confirmed Cases: {{i.12}} </a></h5>
+                    <h5> Cured/Discharged/Migrated: {{i.13}} </a></h5>
+                    <h5> Deaths: {{i.14}} </a></h5>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script
+src="http://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

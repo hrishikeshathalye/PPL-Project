@@ -20,6 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from users import views as user_views
 from news import views as news_views
+from tracker import views as tracker_views
 
 urlpatterns = [
     path('', auth_views.LoginView.as_view(template_name='users/login.html', redirect_authenticated_user=True) , name='login'),
@@ -27,6 +28,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
+    path('tracker/', include('tracker.urls'), name = 'tracker-index'),
     path('register/volunteer/', user_views.register_volunteer, name='register-volunteer'),
     path('register/genuser/', user_views.register_genuser, name='register-genuser'),
     path('profile/', user_views.profile, name='profile'),
