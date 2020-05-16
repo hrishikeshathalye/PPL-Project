@@ -18,7 +18,7 @@ def register_volunteer(request):
             group = Group.objects.get(name='Volunteer')
             user.groups.add(group)
             subject = 'Congratulations ' + save_it.first_name + '!'
-            message = 'Thank You ' + save_it.username +' !\nYou have successfully registered with us as a volnteer!!\nEnjoy and make full use of our app.\n\nNOTE: The default color theme of the app is light. You can change the theme from your profile.\n\nRegards,\nTeam POSTAGRAMM'
+            message = 'Thank You ' + save_it.username +' !\nYou have successfully registered with us as a volunteer!!\nEnjoy and make full use of our app.\n\nNOTE: The default color theme of the app is light. You can change the theme from your profile.\n\nRegards,\nTeam POSTAGRAMM'
             from_email = settings.EMAIL_HOST_USER
             to_list = [save_it.email]
 

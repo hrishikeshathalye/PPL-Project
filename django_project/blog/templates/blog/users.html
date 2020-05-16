@@ -2,7 +2,7 @@
 {% block content %}
 <div class="row">
 <div class="col-md-6" style="border-right: 1.5px solid gray;">
-    <h3 style="text-align: center;">All General Users ({{ users.count }})</h3>
+    <h3 style="text-align: center;">All {{ groupname }} Users ({{ users.count }})</h3>
     <hr/>
     <div style="overflow-y:scroll; overflow-x:hidden; width: 350px; height: 500px;">
     {% for user in users %}

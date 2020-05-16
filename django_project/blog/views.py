@@ -40,7 +40,7 @@ class PostListViewVolunteer(ListView):
         # page_number = request.GET.get('page')
         # page_obj = paginator.get_page(page_number)
         friend, created = Friend.objects.get_or_create(current_user=request.user)
-        friends = friend.users.all()
+        friends = friend.friends.all()
         search_term = ''
                                  
         return render(request, self.template_name, { 'page_obj': posts, 'friends': friends, 'groupname': 'Volunteer'})
@@ -69,7 +69,7 @@ class PostListViewGenUser(ListView):
         # page_number = request.GET.get('page')
         # page_obj = paginator.get_page(page_number)
         friend, created = Friend.objects.get_or_create(current_user=request.user)
-        friends = friend.users.all()
+        friends = friend.friends.all()
         search_term = ''
                                  
         return render(request, self.template_name, { 'page_obj': posts, 'friends': friends, 'groupname': 'GenUser'})
@@ -82,7 +82,7 @@ class UsersDisplayViewVolunteer(ListView):
         users = User.objects.filter(groups__name = 'Volunteer')
         users = users.exclude(id = request.user.id)
         friend, created = Friend.objects.get_or_create(current_user=request.user)
-        friends = friend.users.all()
+        friends = friend.friends.all()
         search_term = ''
 
         if 'search' in request.GET:
@@ -102,7 +102,7 @@ class UsersDisplayViewGenUser(ListView):
         users = User.objects.filter(groups__name = 'GenUser')
         users = users.exclude(id = request.user.id)
         friend, created = Friend.objects.get_or_create(current_user=request.user)
-        friends = friend.users.all()
+        friends = friend.friends.all()
         search_term = ''
 
         if 'search' in request.GET:
@@ -211,7 +211,7 @@ def dislike_post(request):
 def liked_posts(request):
     posts = Post.objects.all().order_by('-date_posted')
     friend, created = Friend.objects.get_or_create(current_user=request.user)
-    friends = friend.users.all()
+    friends = friend.friends.all()
     return render(request, 'blog/liked_posts.html', { 'posts': posts, 'friends': friends })
 
 def report_post(request):

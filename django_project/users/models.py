@@ -11,11 +11,6 @@ class Profile(models.Model):
         ('Light', 'Light')
     )
     theme = models.CharField(max_length=10, choices=THEME_CHOICES, blank=True)
-    PROFILE_CHOICES = (
-        ('Public', 'Public'),
-        ('Private', 'Private')
-    )
-    profile_type = models.CharField(max_length=10, choices=PROFILE_CHOICES, blank=True)
     GENDER_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female'),
