@@ -3,19 +3,20 @@
 <head>
     <title></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 </head>
 <body style="color: #cae8d5; background-color: #84a9ac;">
     <div class="jumbotron" style="background-color:#204051;">
         <center>
             <h1>News</h1>
-            <a href="/news" class="btn btn-outline-light" style="float: right;">Refresh</a>
-            <a href="/news" class="btn btn-outline-light" style="float: left;">Back</a>
+            <a href="/news" class="fas fa-sync-alt fa-2x" style="float: right; color: #cae8d5; text-decoration: none;"></a>
+            <a href="{% url 'login' %}" class="fas fa-arrow-circle-left fa-2x" style="float: left; color: #cae8d5; text-decoration: none;"></a>
             <a href="/news" class="btn btn-outline-light" style="float: right; margin-right: 1rem;">Track</a>
         </center>
     </div>
     <div class="container" style="background-color: #3b6978; width: 100%; border-radius: 1rem; padding: 1rem;">
         <div class="row">
-            <div class="col-6">
+            <div class="col-6" style="border-right: 1px solid #cae8d5;">
                     <h3 class="text-centre" style="margin-bottom:1.5rem; padding:1rem; background-color: #1b262c; border-radius: 1rem;"> News from WHO</h3>
                     {% for n in who_news %}
                     <h5><a href = "{{ n.0 }}" style="color: #cae8d5;"> -  {{n.1}} </a></h5>
