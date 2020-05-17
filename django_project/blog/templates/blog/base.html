@@ -54,22 +54,22 @@
                     <input style="border-radius: 15px; width: 300px" class="form-control mr-sm-2 search-dark" type="search" placeholder="Search for Posts" aria-label="Search" name = 'search'>
                     <button style="border-radius: 15px;" class="btn btn-outline-light my-2 my-sm-0 button-dark" type="submit">Search</button>
                   </form>
-                  <a href="{% url 'home-genuser' %}">
+                  <!--<a href="{% url 'home-genuser' %}">
                     <button  style="border-radius: 15px;" class="btn btn-outline-light button-dark ml-2">Clear Search Result</button>
-                  </a>
+                  </a>-->
               </div> 
               <!-- Navbar Right Side -->
               
-              <div class="navbar-nav">
-                <a class="nav-item nav-link" style="font-size: 17px; margin-top: 2px;">Welcome {{ user.first_name }}!</a>
+              <div class="navbar-nav float-right">
+                <a class="nav-item nav-link" style="font-size: 17px; margin-top: 2px; ">Welcome {{ user.first_name }}!</a>
+              
+
+              <!--<div class="navbar-nav float-right" style="margin: auto;">-->
+                <a class="nav-item nav-link font-weight-light far fa-newspaper fa-lg mt-2" data-toggle="tooltip" data-placement="bottom" title="News" href="{% url 'news-index' %}"></a>
+                <a href="/tracker" class="nav-item nav-link fas fa-chart-line fa-lg mt-2" data-toggle="tooltip" data-placement="bottom" title="Tracker"></a>
               </div>
 
-              <div class="navbar-nav" style="margin: auto;">
-                <a class="nav-item nav-link font-weight-light far fa-newspaper fa-2x" data-toggle="tooltip" data-placement="bottom" title="News" href="{% url 'news-index' %}"></a>
-                <a href="/tracker" class="fas fa-chart-line fa-2x" style="float: right; color: white; text-decoration: none; margin: auto; margin-left: 1rem;"></a>
-              </div>
-
-              <div class="navbar-nav" style="margin-left: 1rem; margin-right: -2rem; margin-bottom: auto;">
+              <div class="navbar-nav float-right" style="margin-left: 1rem; margin-right: -2rem; margin-bottom: auto;">
                 <a class="nav-item nav-link far fa-plus-square fa-lg dark-a mt-2" data-toggle="tooltip" data-placement="bottom" title="Create new post." href="{% url 'post-create' %}"></a>
                 <a class="nav-item nav-link fas fa-sign-out-alt fa-lg dark-a mt-2" data-toggle="tooltip" data-placement="bottom" title="Logout" href="{% url 'logout' %}"></a>
               </div>

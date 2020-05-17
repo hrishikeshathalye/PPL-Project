@@ -16,7 +16,7 @@
         {% else %}
           <a class="mr-2" style="text-decoration: none;" href="{% url 'not-friend' %}">{{ post.author }}</a>
         {% endif %}
-
+      <span class="badge badge-success">Volunteer</span>
       <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
       <small style="float: right;" class="text-muted">{{ post.date_posted|date:"h:i a" }}</small>
       </div>
