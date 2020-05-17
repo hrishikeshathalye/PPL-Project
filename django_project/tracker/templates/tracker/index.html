@@ -10,29 +10,29 @@
         <center>
             <h1>Tracker</h1>
             <a href="" class="fas fa-sync-alt fa-2x" style="float: right; color: #cae8d5; text-decoration: none;"></a>
-            <a href="{% url 'login' %}" class="fas fa-arrow-circle-left fa-2x" style="float: left; color: #cae8d5; text-decoration: none;"></a>
+            <a href="{% url 'login' %}" class="fas fa-arrow-circle-left fa-2x " style="float: left; color: #cae8d5;  text-decoration: none;"></a>
         </center>
     </div>
     <div class="container-fluid" style="background-color: #3b6978; border-radius: 1rem; padding: 1rem; text-align: center;">
-        {% for i in data%}
+        {% for i in data %}
             <div class="row" style="padding:1rem;">
                 <div class="col-3" style="margin: auto; padding:1rem; background-color: #1b262c; border-radius: 1rem;">
-                    <h3 class="text-centre" > {{i.1}}</h3>
+                    <h3 class="text-centre" style="color: white"> {{i.1}}</h3>
                     <h5> Total Confirmed Cases: {{i.2}} </a></h5>
-                    <h5> Cured/Discharged/Migrated: {{i.3}} </a></h5>
-                    <h5> Deaths: {{i.4}} </a></h5>
+                    <h5 style="color: #96FB79"> Cured/Discharged/Migrated: {{i.3}} </a></h5>
+                    <h5 style="color: #FE8783"> Deaths: {{i.4}} </a></h5>
                 </div>
                 <div class="col-3" style="margin: auto; padding:1rem; background-color: #1b262c; border-radius: 1rem;">
-                    <h3 class="text-centre" > {{i.6}}</h3>
+                    <h3 class="text-centre" style="color: white"> {{i.6}}</h3>
                     <h5> Total Confirmed Cases: {{i.7}} </a></h5>
-                    <h5> Cured/Discharged/Migrated: {{i.8}} </a></h5>
-                    <h5> Deaths: {{i.9}} </a></h5>
+                    <h5 style="color: #96FB79"> Cured/Discharged/Migrated: {{i.8}} </a></h5>
+                    <h5 style="color: #FE8783"> Deaths: {{i.9}} </a></h5>
                 </div>
                 <div class="col-3" style="margin: auto; padding:1rem; background-color: #1b262c; border-radius: 1rem;">
-                    <h3 class="text-centre" > {{i.11}}</h3>
+                    <h3 class="text-centre" style="color: white"> {{i.11}}</h3>
                     <h5> Total Confirmed Cases: {{i.12}} </a></h5>
-                    <h5> Cured/Discharged/Migrated: {{i.13}} </a></h5>
-                    <h5> Deaths: {{i.14}} </a></h5>
+                    <h5 style="color: #96FB79"> Cured/Discharged/Migrated: {{i.13}} </a></h5>
+                    <h5 style="color: #FE8783"> Deaths: {{i.14}} </a></h5>
                 </div>
             </div>
         {% endfor %}
