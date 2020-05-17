@@ -97,8 +97,9 @@ class UsersDisplayViewGenUser(ListView):
     template_name = 'blog/users.html'   #<app>/<model>_<viewtype>.html
     
     def get(self, request):
-        users = User.objects.filter(groups__name = 'GenUser')
+        users = User.objects.all()
         users = users.exclude(id = request.user.id)
+        users = users.exclude(username = 'admin')
         friend, created = Friend.objects.get_or_create(current_user=request.user)
         friends = friend.friends.all()
         search_term = ''

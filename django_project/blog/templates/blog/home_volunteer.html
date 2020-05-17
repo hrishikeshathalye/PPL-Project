@@ -16,9 +16,9 @@
         {% else %}
           <a class="mr-2" style="text-decoration: none;" href="{% url 'not-friend' %}">{{ post.author }}</a>
         {% endif %}
-      <span class="badge badge-success">Volunteer</span>
       <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
       <small style="float: right;" class="text-muted">{{ post.date_posted|date:"h:i a" }}</small>
+      <span class="badge badge-success" style="float: right; margin-right: 1rem;">Volunteer</span>
       </div>
       <h2>
       <a class="article-title font-weight-light" data-toggle="tooltip" data-placement="bottom"title="See this post in another window." href="{% url 'post-detail' post.id %}">
@@ -26,7 +26,7 @@
       </a>
       </h2>
       {% if  post.image.url == '/media/default.jpg' %}
-        <p class="article-content">{{ post.content }}</p>
+        <p class="article-content" style="word-break: break-all;">{{ post.content }}</p>
       {% else %}
         <a href="{% url 'post-detail' post.id %}"><img style="border-radius: 20px;" src ="{{post.image.url}}" alt ='post pic'></a>
         <p style="margin-top: 10px;" class="article-content">{{ post.content }}</p>
@@ -38,7 +38,7 @@
         <button type="submit" name="post_id" value="{{ post.id }}" 
           class="btn btn-outline-danger button-dark"
           data-toggle="tooltip" data-placement="bottom" title="Report this post for fake content."
-           style="font-size: 14px; float: right;">Report</button>
+           style="font-size: 14px; float: right; margin-right: -1.5rem;">Report</button>
       </form>
       {% endif %}
 

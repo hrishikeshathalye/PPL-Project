@@ -26,13 +26,13 @@
           </div>
           <h2><a class="article-title font-weight-light" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
           {% if  post.image.url == '/media/default.jpg' %}
-            <p class="article-content">{{ post.content }}</p>
+            <p class="article-content" style="word-break: break-all;">{{ post.content }}</p>
           {% else %}
             <img style="border-radius: 20px;" src ="{{post.image.url}}" alt ='post pic'>
-            <p style="margin-top: 10px;" class="article-content">{{ post.content }}</p>
+            <p style="margin-top: 10px; word-break: break-all;" class="article-content">{{ post.content }}</p>
           {% endif %}
           <hr>
-          <a href="{% url 'post-detail' pk=post.pk %}" style="padding-right: 5px;"><button class="btn btn-outline-primary button-dark fa fa-comment-o" ></button></a>{{ post.comments.count }}
+          <a href="{% url 'post-detail' pk=post.pk %}" style="padding-right: 5px;"><button class="btn btn-outline-primary button-dark far fa-comments" ></button></a>{{ post.comments.count }}
         </div>
     </article>
     {% endfor %}

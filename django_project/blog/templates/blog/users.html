@@ -2,13 +2,17 @@
 {% block content %}
 <div class="row">
 <div class="col-md-6" style="border-right: 1.5px solid gray;">
-    <h3 style="text-align: center;">All {{ groupname }} Users ({{ users.count }})</h3>
+    {% if groupname == 'GenUser' %}
+        <h3 style="text-align: center;">All Users ({{ users.count }})</h3>
+    {% else %}
+        <h3 style="text-align: center;">All {{ groupname }} Users ({{ users.count }})</h3>
+    {% endif %}
     <hr/>
     <div style="overflow-y:scroll; overflow-x:hidden; width: 350px; height: 500px;">
     {% for user in users %}
     {% if not user in friends %}  
         <div class="content-section mr-2" style="border-radius: 15px;">
-            <a href="{% url 'user-posts' user.username %}"><img class="rounded-circle article-img" style="float: left;" src="{{ user.profile.image.url }}"></a>
+            <a href="{% url 'user-posts' user.username %}"><img class="rounded-circle article-img mb-3" style="float: left;" src="{{ user.profile.image.url }}"></a>
             <a class="article-metadata" style="text-decoration: none;" href="{% url 'not-friend' %}">{{ user.username }}<a class="fa fa-user-plus fa-1x dark-a" data-toggle="tooltip" data-placement="bottom" title="Add Friend" style="text-decoration: none; padding-left: 10px;" href="{% url 'change_friends' operation='add' pk=user.pk %}"></a></a>
             <p class="text-secondary mt-1">{{ user.first_name }} {{ user.last_name }}</p>
         </div>

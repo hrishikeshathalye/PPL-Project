@@ -16,10 +16,10 @@
           </div>
           <h2 class="article-title font-weight-light" >{{ object.title }}</h2>
           {% if  object.image.url == '/media/default.jpg' %}
-            <p class="article-content" style="margin-left: 0px;">{{ object.content }}</p>
+            <p class="article-content" style="margin-left: 0px; word-break: break-all;">{{ object.content }}</p>
           {% else %}
             <img style="border-radius: 20px;" src ="{{object.image.url}}" alt ='post pic'>
-            <p style="margin-top: 10px; margin-left: 0px;" class="article-content">{{ object.content }}</p>
+            <p style="margin-top: 10px; margin-left: 0px; word-break: break-all;" class="article-content">{{ object.content }}</p>
           {% endif %}
         </div>
     </article>
