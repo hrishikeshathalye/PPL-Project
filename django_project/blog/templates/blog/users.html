@@ -9,7 +9,7 @@
     {% if not user in friends %}  
         <div class="content-section mr-2" style="border-radius: 15px;">
             <a href="{% url 'user-posts' user.username %}"><img class="rounded-circle article-img" style="float: left;" src="{{ user.profile.image.url }}"></a>
-            <a class="article-metadata" style="text-decoration: none;" href="{% url 'not-friend' %}">{{ user.username }}<a class="fa fa-user-plus fa-lg dark-a" data-toggle="tooltip" data-placement="bottom" title="Add Friend" style="text-decoration: none; padding-left: 10px;" href="{% url 'change_friends' operation='add' pk=user.pk %}"></a></a>
+            <a class="article-metadata" style="text-decoration: none;" href="{% url 'not-friend' %}">{{ user.username }}<a class="fa fa-user-plus fa-1x dark-a" data-toggle="tooltip" data-placement="bottom" title="Add Friend" style="text-decoration: none; padding-left: 10px;" href="{% url 'change_friends' operation='add' pk=user.pk %}"></a></a>
             <p class="text-secondary mt-1">{{ user.first_name }} {{ user.last_name }}</p>
         </div>
     {% else %}
@@ -30,7 +30,7 @@
     {% for friend in friends %} 
     <div class="content-section mr-2" style="border-radius: 15px;">
         <a href="{% url 'user-posts' friend.username %}"><img class="rounded-circle article-img" style="float: left;" src="{{ friend.profile.image.url }}"></a>
-        <a class="article-metadata" style="text-decoration: none;" href="{% url 'user-posts' friend.username %}">{{ friend.username }}<a class="fa fa-user-times fa-lg dark-a" data-toggle="tooltip" data-placement="bottom" title="Remove Friend" style=" text-decoration: none;padding-left: 10px;" href="{% url 'change_friends' operation='remove' pk=friend.pk %}"></a></a>
+        <a class="article-metadata" style="text-decoration: none;" href="{% url 'user-posts' friend.username %}">{{ friend.username }}<a class="fa fa-user-times fa-1x dark-a" data-toggle="tooltip" data-placement="bottom" title="Remove Friend" style=" text-decoration: none;padding-left: 10px;" href="{% url 'change_friends' operation='remove' pk=friend.pk %}"></a></a>
         <p class="text-secondary mt-1">{{ friend.first_name }} {{ friend.last_name }}</p>
     </div>
     {% endfor %}

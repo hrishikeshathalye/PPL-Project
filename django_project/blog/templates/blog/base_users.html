@@ -16,7 +16,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'blog/light.css' %}">
     {% endif %}
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
     {% if title %}
         <title>Django PPL - {{ title  }}</title>
     {% else %}
@@ -36,7 +37,7 @@
   <header class="site-header">
     <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
       <div class="container">
-          <a class="navbar-brand mr-1 logo-dark" href="{% url 'home-genuser' %}">Covid Connect</a>
+          <a class="navbar-brand mr-1 logo-dark" href="{% url 'home-genuser' %}"><img src="/media/logo.png" height="30" width="210" alt="COVID CONNECT"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -46,22 +47,13 @@
                 <input style="border-radius: 15px; width: 300px" class="form-control mr-sm-2 search-dark" type="search" placeholder="Search for Users and Friends" aria-label="Search" name = 'search'>
                 <button style="border-radius: 15px;" class="btn btn-outline-light my-2 my-sm-0 button-dark" type="submit">Search</button>
               </form>
-              <!--{% if groupname == 'Volunteer' %}
-                <a href="{% url 'volunteers-view' %}">
-                  <button  style="border-radius: 15px;" class="btn btn-outline-light button-dark ml-2">Clear Search Result</button>
-                </a>
-              {% elif groupname ==  'GenUser' %}
-                <a href="{% url 'volunteers-view' %}">
-                  <button  style="border-radius: 15px;" class="btn btn-outline-light button-dark ml-2">Clear Search Result</button>
-                </a>
-              {% endif %}-->
           </div> 
           <!-- Navbar Right Side -->
           
           <div class="navbar-nav">
             <a class="nav-item nav-link" style="font-size: 17px; margin-top: 2px;">Welcome {{ user.first_name }}!</a>
-            <a class="nav-item nav-link fa fa-plus-square-o fa-lg dark-a" style="margin-top: 7px;" data-toggle="tooltip" data-placement="bottom" title="Create new post." href="{% url 'post-create' %}"></a>
-            <a class="nav-item nav-link fa fa-sign-out fa-lg dark-a" style="margin-top: 7px;" data-toggle="tooltip" data-placement="bottom" title="Logout" href="{% url 'logout' %}"></a>
+            <a class="nav-item nav-link far fa-plus-square fa-lg dark-a" style="margin-top: 7px;" data-toggle="tooltip" data-placement="bottom" title="Create new post." href="{% url 'post-create' %}"></a>
+            <a class="nav-item nav-link fas fa-sign-out-alt fa-lg dark-a" style="margin-top: 7px;" data-toggle="tooltip" data-placement="bottom" title="Logout" href="{% url 'logout' %}"></a>
           </div>
         </div>
       </div>

@@ -9,7 +9,8 @@
     <div class="jumbotron" style="background-color:#204051;">
         <center>
             <h1>Tracker</h1>
-            <a href="" class="fas fa-sync-alt fa-2x" style="float: right; color: #cae8d5; text-decoration: none;"></a>
+            <a href="" class="fas fa-sync-alt fa-2x" style="float: right; color: #cae8d5; text-decoration: none;" data-toggle="tooltip" data-placement="bottom" title="Refresh"></a>
+            <a class="far fa-newspaper fa-2x" style="float: right; color: #cae8d5; text-decoration: none; margin-right: 2rem;" data-toggle="tooltip" data-placement="bottom" title="News" href="{% url 'news-index' %}"></a>
             <a href="{% url 'login' %}" class="fas fa-arrow-circle-left fa-2x " style="float: left; color: #cae8d5;  text-decoration: none;"></a>
         </center>
     </div>

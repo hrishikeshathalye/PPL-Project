@@ -58,8 +58,6 @@ class PostListViewGenUser(ListView):
     def get(self, request):
         posts = Post.objects.all().order_by('-date_posted')
 
-        print(posts)
-
         if 'search' in request.GET:
             search_term =  request.GET['search']
             posts = posts.filter(Q(title__icontains = search_term) | 

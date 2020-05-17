@@ -32,14 +32,14 @@
     <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
           <div class="container">
-              <a class="navbar-brand mr-4 logo-dark" href="{% url 'login' %}">Covid Connect</a>
+              <a class="navbar-brand mr-4 logo-dark" href="{% url 'login' %}"><img src="/media/logo.png" height="30" width="210" alt="COVID CONNECT"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarToggle">
               <div class="navbar-nav mr-auto">
-                <a class="nav-item nav-link font-weight-light far fa-newspaper fa-lg mt-2" data-toggle="tooltip" data-placement="bottom" title="News" href="{% url 'news-index' %}"></a>
-                <a href="/tracker" class="nav-item nav-link fas fa-chart-line fa-lg mt-2" data-toggle="tooltip" data-placement="bottom" title="Tracker"></a>
+                <a class="nav-item nav-link font-weight-light far fa-newspaper fa-2x" data-toggle="tooltip" data-placement="bottom" title="News" href="{% url 'news-index' %}"></a>
+                <a href="/tracker" class="nav-item nav-link fas fa-chart-line fa-2x" data-toggle="tooltip" data-placement="bottom" title="Tracker"></a>
               </div>
               <div class="navbar-nav">
                 <a class="nav-item nav-link font-weight-light fas fa-question-circle fa-2x" data-toggle="tooltip" data-placement="bottom" title="About" href="{% url 'blog-about' %}"></a>
